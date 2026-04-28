@@ -2,7 +2,7 @@
 
 @if (loading) {
     <p>Cargando pokémon...</p>
-}@else {
+}@else if (pokemon) {
     <a [routerLink]="['/home']" class="boton-volver">Volver</a>
 
     <div class="detalle" [ngStyle]="{'background': getTypeColor(),'box-shadow': getTypeShadow()}">
@@ -31,4 +31,6 @@
             }
         </ul>
     </div>
+}@else {
+    <p>No se pudo cargar el pokémon.</p>
 }

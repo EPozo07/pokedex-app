@@ -27,7 +27,7 @@
     
     @if (loading){
         <p>Cargando pokémons...</p>
-    }@else{
+    }@else if (pokemons){
         <div class="Pokemones">
         @for (pokemon of pokemons; track pokemon.name){
             <app-carta-pokemon [pokemon]="pokemon"></app-carta-pokemon>
