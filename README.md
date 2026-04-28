@@ -1,59 +1,25 @@
 # PokedexApp
+Esta aplicación web es la primera que hago en mi periodo de prácticas junto a mi mentor Adrián Pozo Esteban.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.8.
+## Descripción
+Aplicación web desarrollada con Angular, utiliza la API de Pokémon llamada PokeApi para poder mostrar toda la información sobre los pokemons.
 
-## Development server
+Esta primera versión esta limitada a 151 pokemons, sin embargo una vez implementadas las páginas y los filtros, se expandirá este límite.
 
-To start a local development server, run:
+## Stack tecnológico
 
-```bash
-ng serve
-```
+- Angular 
+- TypeScript
+- PokéAPI
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Instalación
+1. Clona el repositorio
+2. Ejecuta `npm install`
+3. Ejecuta `ng serve`
+4. Abre `localhost:4200`
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Funcionalidades
+- Listado de pokémon.
+- Buscador.
+- Detalle de cada pokémon.
+- Detalle sobre autor de la web.
