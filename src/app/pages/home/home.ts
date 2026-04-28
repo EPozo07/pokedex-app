@@ -14,9 +14,32 @@ import { PokemonInterface } from '../../models/pokemon/pokemon';
   styleUrls: ['./home.css'],
 })
 export class Home implements OnInit {
-  pokemons: PokemonInterface[] = [];
+  allPokemons: any[] = [];
+  pokemons: any[] = [];
   loading: boolean = true;
   busqueda: string = '';
+  selectedType: string = 'all';
+  types: string[] = [
+    'all',
+    'normal',
+    'fire',
+    'water',
+    'electric',
+    'grass',
+    'ice',
+    'fighting',
+    'poison',
+    'ground',
+    'flying',
+    'psychic',
+    'bug',
+    'rock',
+    'ghost',
+    'dragon',
+    'dark',
+    'steel',
+    'fairy',
+  ];
   pokemonEncontrado: PokemonInterface | null = null;
   errorNoEncontrado: string = '';
   constructor(
@@ -27,7 +50,8 @@ export class Home implements OnInit {
   ngOnInit(): void {
     this.pokemonService.getPokemons().subscribe((data: any) => {
       console.log('Pokémon cargados:', data);
-      this.pokemons = data.results;
+      this.allPokemons = data.results;
+      this.pokemons = this.allPokemons;
       this.loading = false;
       this.cdr.detectChanges();
     }, (error) => {
@@ -36,6 +60,24 @@ export class Home implements OnInit {
       this.cdr.detectChanges();
     });
   }
+
+  filtrarPorTipo(): void {
+    if (this.selectedType === 'all') {
+      this.pokemons = this.allPokemons;
+      return;
+    }
+
+    this.pokemonService.getPokemonsByType(this.selectedType).subscribe((data: any) => {
+      const pokeNames = new Set(data.pokemon.map((item: any) => item.pokemon.name));
+      this.pokemons = this.allPokemons.filter((pokemon: any) => pokeNames.has(pokemon.name));
+      this.cdr.detectChanges();
+    }, (error) => {
+      console.error('Error al filtrar por tipo:', error);
+      this.pokemons = this.allPokemons;
+      this.cdr.detectChanges();
+    });
+  }
+
   buscarPokemon():  void {
     if (!this.busqueda) return;
     this.pokemonEncontrado = null;

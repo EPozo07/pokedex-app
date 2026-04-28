@@ -14,11 +14,42 @@ body {
   padding: 20px;
 }
 
+.titulo-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto 20px;
+}
+
 .titulo h1 {
   color: red;
   font-size: 3rem;
   text-shadow: 3px 3px 0px #ffcc00;
   letter-spacing: 5px;
+}
+
+.filtros {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.filtros label {
+  color: #333;
+  font-weight: bold;
+}
+
+.filtros select {
+  padding: 10px 14px;
+  border-radius: 20px;
+  border: 3px solid #ffcc00;
+  font-size: 1rem;
+  background-color: white;
+  outline: none;
 }
 
 .Pokemones {
@@ -27,7 +58,6 @@ body {
   gap: 20px;
   padding: 5px;
 }
-
 
 
 .boton-about {

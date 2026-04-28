@@ -1,5 +1,16 @@
 <div class="titulo">
-    <h1>Pokédex</h1>
+    <div class="titulo-header">
+      <h1>Pokédex</h1>
+      <div class="filtros">
+        <label for="tipo-select">Filtrar por tipo</label>
+        <select id="tipo-select" [(ngModel)]="selectedType" (change)="filtrarPorTipo()">
+          @for (tipo of types; track tipo) {
+            <option [value]="tipo">{{ tipo === 'all' ? 'Todos' : tipo | titlecase }}</option>
+          }
+        </select>
+      </div>
+    </div>
+
     <a routerLink="/about" class="boton-about">Sobre mí</a>
 
     <div class="buscador">
