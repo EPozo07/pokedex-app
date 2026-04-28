@@ -1,0 +1,122 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #ff0000;
+  font-family: 'Arial', sans-serif;
+}
+
+.titulo {
+  text-align: center;
+  padding: 20px;
+}
+
+.titulo h1 {
+  color: red;
+  font-size: 3rem;
+  text-shadow: 3px 3px 0px #ffcc00;
+  letter-spacing: 5px;
+}
+
+.Pokemones {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  padding: 5px;
+}
+
+
+
+.boton-about {
+  display: block;
+  margin: 20px auto;
+  background-color: #3b4cca;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  border: 2px solid #2a36a3;
+  text-align: center;
+  width: fit-content;
+}
+
+.boton-about:hover {
+  background-color: #ffcc00;
+  color: #333;
+}
+
+.buscador {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.buscador input {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 3px solid #ffcc00;
+  font-size: 1rem;
+  outline: none;
+  width: 300px;
+}
+
+.buscador button {
+  padding: 10px 20px;
+  background-color: #ffcc00;
+  color: #333;
+  border: none;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.buscador button:hover {
+  background-color: white;
+  color: #333;
+}
+
+.resultado-busqueda {
+  background-color: white;
+  border: 3px solid #ffcc00;
+  border-radius: 15px;
+  padding: 20px;
+  max-width: 300px;
+  margin: 20px auto;
+  text-align: center;
+  box-shadow: 4px 4px 0px #cc0000;
+}
+
+.resultado-busqueda img {
+  width: 120px;
+  height: 120px;
+}
+
+.resultado-busqueda h2 {
+  text-transform: capitalize;
+  color: #333;
+}
+
+.resultado-busqueda a {
+  display: inline-block;
+  margin-top: 10px;
+  background-color: #ff0000;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.error {
+  color: black;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 20px 0;
+}

@@ -1,0 +1,43 @@
+.carta-pokemon {
+  background-color: white;
+  border: 3px solid #ff0000;
+  border-radius: 20px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 4px 4px 0px #ffcc00;
+  transition: transform 2.0s;
+}
+
+.carta-pokemon:hover {
+  transform: scale(1.10);
+}
+
+.carta-pokemon img {
+  width: 120px;
+  height: 120px;
+}
+
+.carta-pokemon h3 {
+  text-transform: capitalize;
+  color: black;
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+.carta-pokemon a {
+  display: inline-block;
+  margin-top: 10px;
+  background-color: #ff0000;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  border: 2px solid #cc0000;
+}
+
+.carta-pokemon a:hover {
+  background-color: #ffcc00;
+  color: #333;
+  border-color: #ffcc00;
+}
