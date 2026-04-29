@@ -1,0 +1,48 @@
+<div class="titulo">
+    <div class="titulo-header">
+      <h1>Pokédex</h1>
+      <div class="filtros">
+        <label for="tipo-select">Filtrar por tipo</label>
+        <select id="tipo-select" [(ngModel)]="selectedType" (change)="filtrarPorTipo()">
+          @for (tipo of types; track tipo) {
+            <option [value]="tipo">{{ tipo === 'all' ? 'Todos' : tipo | titlecase }}</option>
+          }
+        </select>
+      </div>
+    </div>
+    
+    <a routerLink="/home" class="boton-about">← Volver</a>
+
+    <div class="buscador">
+      <input 
+        type="text" 
+        placeholder="Busca un pokémon..." 
+        [(ngModel)]="busqueda"
+        (keyup.enter)="buscarPokemon()">
+      <button (click)="buscarPokemon()">Buscar</button>
+    </div>
+
+    @if (pokemonEncontrado) {
+      <div class="resultado-busqueda">
+        <h2>{{ pokemonEncontrado.name | titlecase }}</h2>
+        <img [src]="pokemonEncontrado.sprites.front_default" [alt]="pokemonEncontrado.name">
+        <p>Altura: {{ pokemonEncontrado.height }} m</p>
+        <p>Peso: {{ pokemonEncontrado.weight }} kg</p>
+        <a [routerLink]="['/detalle', pokemonEncontrado.id]">Ver detalle completo</a>
+      </div>
+    }
+
+    @if (errorNoEncontrado) {
+      <p class="error">{{ errorNoEncontrado }}</p>
+    }
+    
+    @if (loading){
+        <p>Cargando pokémons...</p>
+    }@else if (pokemons){
+        <div class="Pokemones">
+        @for (pokemon of pokemons; track pokemon.name){
+            <app-carta-pokemon [pokemon]="pokemon"></app-carta-pokemon>
+        }
+        </div>
+    }
+</div>

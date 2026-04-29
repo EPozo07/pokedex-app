@@ -9,7 +9,7 @@ export class Pokemon {
   constructor(private http: HttpClient) {
   }
   getPokemons(){
-    return this.http.get(`${this.apiUrl}/pokemon?limit=501`);
+    return this.http.get(`${this.apiUrl}/pokemon?limit=493`);
   }
   getPokemonsByType(type: string){
     return this.http.get(`${this.apiUrl}/type/${type}`);
@@ -17,4 +17,7 @@ export class Pokemon {
   getPokemon(id: any){
     return this.http.get(`${this.apiUrl}/pokemon/${id}`);
   }
+  getPokemonsByGeneration(id: number) {
+  return this.http.get(`${this.apiUrl}/generation/${id}`);
+}
 }

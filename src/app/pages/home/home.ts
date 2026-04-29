@@ -1,95 +1,42 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { Pokemon } from '../../services/pokemon';
-import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { CartaPokemon } from '../../components/carta-pokemon/carta-pokemon';
-import { PokemonInterface } from '../../models/pokemon/pokemon';
 
 @Component({
   standalone: true,
   selector: 'app-home',
-  imports: [CommonModule, RouterLink, FormsModule, CartaPokemon],
+  imports: [RouterLink],
   templateUrl: './home.html',
-  styleUrls: ['./home.css'],
+  styleUrls: ['./home.css']
 })
-export class Home implements OnInit {
-  allPokemons: any[] = [];
-  pokemons: any[] = [];
-  loading: boolean = true;
-  busqueda: string = '';
-  selectedType: string = 'all';
-  types: string[] = [
-    'all',
-    'normal',
-    'fire',
-    'water',
-    'electric',
-    'grass',
-    'ice',
-    'fighting',
-    'poison',
-    'ground',
-    'flying',
-    'psychic',
-    'bug',
-    'rock',
-    'ghost',
-    'dragon',
-    'dark',
-    'steel',
-    'fairy',
-  ];
-  pokemonEncontrado: PokemonInterface | null = null;
-  errorNoEncontrado: string = '';
-  constructor(
-    private pokemonService: Pokemon,
-    private cdr: ChangeDetectorRef
-  ) {}
-
-  ngOnInit(): void {
-    this.pokemonService.getPokemons().subscribe((data: any) => {
-      console.log('Pokémon cargados:', data);
-      this.allPokemons = data.results;
-      this.pokemons = this.allPokemons;
-      this.loading = false;
-      this.cdr.detectChanges();
-    }, (error) => {
-      console.error('Error al cargar el pokémon:', error);
-      this.loading = false;
-      this.cdr.detectChanges();
-    });
-  }
-
-  filtrarPorTipo(): void {
-    if (this.selectedType === 'all') {
-      this.pokemons = this.allPokemons;
-      return;
+export class Home {
+  generaciones = [
+    {
+      id: 1,
+      nombre: 'Generación I',
+      region: 'Kanto',
+      cantidad: 151,
+      imagen: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png'
+    },
+    {
+      id: 2,
+      nombre: 'Generación II',
+      region: 'Johto',
+      cantidad: 100,
+      imagen: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/249.png'
+    },
+    {
+      id: 3,
+      nombre: 'Generación III',
+      region: 'Hoenn',
+      cantidad: 135,
+      imagen: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/384.png'
+    },
+    {
+      id: 4,
+      nombre: 'Generación IV',
+      region: 'Sinnoh',
+      cantidad: 107,
+      imagen: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/483.png'
     }
-
-    this.pokemonService.getPokemonsByType(this.selectedType).subscribe((data: any) => {
-      const pokeNames = new Set(data.pokemon.map((item: any) => item.pokemon.name));
-      this.pokemons = this.allPokemons.filter((pokemon: any) => pokeNames.has(pokemon.name));
-      this.cdr.detectChanges();
-    }, (error) => {
-      console.error('Error al filtrar por tipo:', error);
-      this.pokemons = this.allPokemons;
-      this.cdr.detectChanges();
-    });
-  }
-
-  buscarPokemon():  void {
-    if (!this.busqueda) return;
-    this.pokemonEncontrado = null;
-    this.errorNoEncontrado = '';
-    this.pokemonService.getPokemon(this.busqueda.toLowerCase()).subscribe((data: any) => {
-      console.log('Pokémon encontrado:', data);
-      this.pokemonEncontrado = data;
-      this.cdr.detectChanges();
-    }, (error) => {
-      console.error('Error al buscar el pokémon:', error);
-      this.errorNoEncontrado = 'Pokémon no encontrado. Intenta con otro nombre o ID.';
-      this.cdr.detectChanges();
-    });
-  }
+  ];
 }
