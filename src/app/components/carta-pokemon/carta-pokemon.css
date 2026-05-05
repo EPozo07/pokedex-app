@@ -41,3 +41,22 @@
   color: #333;
   border-color: #ffcc00;
 }
+
+.btn-favorito {
+  display: inline-block;
+  margin-top: 8px;
+  background-color: white;
+  color: #ff0000;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-weight: bold;
+  border: 2px solid #ff0000;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.btn-favorito:hover {
+  background-color: #ff0000;
+  color: white;
+}

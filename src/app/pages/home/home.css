@@ -89,11 +89,16 @@
   font-size: 0.9rem;
   color: #555;
 }
-.boton-about {
+.botones-nav {
   position: absolute;
   bottom: 5px;
   left: 50%;
   transform: translateX(-50%);
+  display: flex;
+  gap: 15px;
+}
+
+.boton-nav {
   background-color: #3b4cca;
   color: white;
   padding: 10px 25px;
@@ -102,9 +107,10 @@
   font-weight: bold;
   border: 3px solid #ffcc00;
   box-shadow: 3px 3px 0px rgba(0,0,0,0.3);
+  transition: all 0.2s;
 }
 
- .boton-about:hover{ 
-    background-color: #ffcc00;
-     color: #333; 
-    }
+.boton-nav:hover {
+  background-color: #ffcc00;
+  color: #333;
+}

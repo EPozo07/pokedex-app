@@ -2,6 +2,8 @@
   <h1>Pokédex</h1>
   <p class="subtitulo">Elige una generación</p>
 
+ 
+
   <div class="generaciones-grid">
     @for (gen of generaciones; track gen.id) {
       <div class="gen-card" [routerLink]="['/generacion', gen.id]">
@@ -11,6 +13,9 @@
         <span>{{ gen.cantidad }} pokémon</span>
       </div>
     }
-        <a routerLink="/about" class="boton-about">Sobre mí</a>
+     <div class="botones-nav">
+    <a routerLink="/favoritos" class="boton-nav"> Favoritos</a>
+    <a routerLink="/about" class="boton-nav">Sobre mí</a>
+  </div>
   </div>
 </div>

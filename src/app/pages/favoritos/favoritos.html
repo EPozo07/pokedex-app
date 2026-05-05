@@ -1,0 +1,23 @@
+<div class="favoritos-container">
+  <div class="favoritos-header">
+    <h1>Mis Favoritos</h1>
+    <a routerLink="/home" class="boton-volver">Volver</a>
+  </div>
+
+  @if (loading) {
+    <p>Cargando favoritos...</p>
+  } @else if (favoritos.length === 0) {
+    <p class="sin-favoritos">No tienes ningún favorito todavía</p>
+  } @else {
+    <div class="favoritos-grid">
+      @for (favorito of favoritos; track favorito.id) {
+        <div class="favorito-card">
+          <img [src]="favorito.pokemon_imagen" [alt]="favorito.pokemon_nombre">
+          <h3>{{ favorito.pokemon_nombre | titlecase }}</h3>
+          <a [routerLink]="['/detalle', favorito.pokemon_id]" class="btn-detalle">Ver detalle</a>
+          <button (click)="eliminarFavorito(favorito.id)" class="btn-eliminar">Eliminar</button>
+        </div>
+      }
+    </div>
+  }
+</div>
