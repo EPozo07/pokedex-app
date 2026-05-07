@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
+import { AuthService } from '../../services/auth';
 
 @Component({
   standalone: true,
@@ -39,4 +40,14 @@ export class Home {
       imagen: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/483.png'
     }
   ];
+
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) {}
+
+  async cerrarSesion() {
+    await this.authService.signOut();
+    this.router.navigate(['/login']);
+  }
 }

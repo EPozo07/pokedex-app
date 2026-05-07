@@ -1,0 +1,37 @@
+<div class="login-container">
+  <div class="login-card">
+    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" alt="pikachu" class="login-img">
+    <h1>Pokédex</h1>
+    <p class="subtitulo">Inicia sesión para continuar</p>
+
+    <div class="form-group">
+      <input 
+        type="email" 
+        placeholder="Email" 
+        [(ngModel)]="email"
+        class="input-field">
+    </div>
+
+    <div class="form-group">
+      <input 
+        type="password" 
+        placeholder="Contraseña" 
+        [(ngModel)]="password"
+        (keyup.enter)="login()"
+        class="input-field">
+    </div>
+
+    @if (error) {
+      <p class="error">{{ error }}</p>
+    }
+
+    <button (click)="login()" [disabled]="loading" class="btn-login">
+      {{ loading ? 'Cargando...' : 'Iniciar sesión' }}
+    </button>
+
+    <p class="registro-link">
+      ¿No tienes cuenta? 
+      <a routerLink="/registro">Regístrate</a>
+    </p>
+  </div>
+</div>

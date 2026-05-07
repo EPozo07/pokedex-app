@@ -1,8 +1,9 @@
 <div class="home-container">
-  <h1>Pokédex</h1>
+  <div class="home-header">
+    <h1>Pokédex</h1>
+    <button (click)="cerrarSesion()" class="btn-logout">Cerrar sesión</button>
+  </div>
   <p class="subtitulo">Elige una generación</p>
-
- 
 
   <div class="generaciones-grid">
     @for (gen of generaciones; track gen.id) {
@@ -13,9 +14,10 @@
         <span>{{ gen.cantidad }} pokémon</span>
       </div>
     }
-     <div class="botones-nav">
+  </div>
+
+  <div class="botones-nav">
     <a routerLink="/favoritos" class="boton-nav"> Favoritos</a>
     <a routerLink="/about" class="boton-nav">Sobre mí</a>
-  </div>
   </div>
 </div>

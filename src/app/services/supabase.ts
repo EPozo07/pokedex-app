@@ -17,11 +17,41 @@ export class SupabaseService {
     return this.supabase.from('favoritos').select('*');
   }
 
-  addFavorito(pokemon_id: number, pokemon_nombre: string, pokemon_imagen: string) {
-    return this.supabase.from('favoritos').insert([{ pokemon_id, pokemon_nombre, pokemon_imagen }]);
-  }
+  async addFavorito(pokemon_id: number, pokemon_name: string, pokemon_imagen: string) {
+  const { data: { session } } = await this.supabase.auth.getSession();
+  const user_id = session?.user?.id;
+  
+  return this.supabase.from('favoritos').insert([{ 
+    pokemon_id, 
+    pokemon_nombre: pokemon_name, 
+    pokemon_imagen,
+    user_id
+  }]);
+}
 
   deleteFavorito(id: number) {
     return this.supabase.from('favoritos').delete().eq('id', id);
   }
+
+  signUp(email: string, password: string) {
+    return this.supabase.auth.signUp({ email, password });
+  }
+
+  signIn(email: string, password: string) {
+    return this.supabase.auth.signInWithPassword({ email, password });
+  }
+
+  signOut() {
+    return this.supabase.auth.signOut();
+  }
+
+  getSession() {
+    return this.supabase.auth.getSession();
+  }
+
+  onAuthStateChange(callback: any) {
+    return this.supabase.auth.onAuthStateChange(callback);
+  }
+
 }
+

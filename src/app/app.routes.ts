@@ -4,12 +4,17 @@ import { Detalle } from './pages/detalle/detalle';
 import { About } from './pages/about/about';
 import { Generacion } from './pages/generacion/generacion';
 import { Favoritos } from './pages/favoritos/favoritos';
+import { Login } from './pages/login/login';
+import { Registro } from './pages/registro/registro';
+import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: Home },
-  { path: 'detalle/:id', component: Detalle },
-  { path: 'about', component: About },
-  { path: 'generacion/:id', component: Generacion },
-  { path: 'favoritos', component: Favoritos },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'home', component: Home, canActivate: [authGuard] },
+  { path: 'detalle/:id', component: Detalle, canActivate: [authGuard] },
+  { path: 'about', component: About, canActivate: [authGuard] },
+  { path: 'generacion/:id', component: Generacion, canActivate: [authGuard] },
+  { path: 'favoritos', component: Favoritos, canActivate: [authGuard] },
+  { path: 'login', component: Login },
+  { path: 'registro', component: Registro },
 ];
