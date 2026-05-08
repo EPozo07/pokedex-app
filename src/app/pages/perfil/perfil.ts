@@ -24,6 +24,9 @@ export class Perfil implements OnInit {
 
   async ngOnInit() {
     this.user = await this.authService.getUser();
+    if (this.user) {
+      this.avatarUrl = this.supabaseService.getAvatarUrl(this.user.id);
+    }
     this.cdr.detectChanges();
   }
 
@@ -32,14 +35,13 @@ export class Perfil implements OnInit {
     if (!file) return;
 
     this.uploading = true;
-    const fileExt = file.name.split('.').pop();
     
     const { data, error } = await this.supabaseService.uploadAvatar(this.user.id, file);
 
     if (error) {
       console.error('Error al subir avatar:', error);
     } else {
-      this.avatarUrl = this.supabaseService.getAvatarUrl(this.user.id, fileExt);
+      this.avatarUrl = this.supabaseService.getAvatarUrl(this.user.id);
     }
     
     this.uploading = false;
