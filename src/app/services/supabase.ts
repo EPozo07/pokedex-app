@@ -52,6 +52,24 @@ export class SupabaseService {
   onAuthStateChange(callback: any) {
     return this.supabase.auth.onAuthStateChange(callback);
   }
+  async uploadAvatar(userId: string, file: File) {
+  const fileExt = file.name.split('.').pop();
+  const fileName = `${userId}.${fileExt}`;
+  
+  const { data, error } = await this.supabase.storage
+    .from('avatars')
+    .upload(fileName, file, { upsert: true });
+    
+  return { data, error };
+}
+
+getAvatarUrl(userId: string, fileExt: string) {
+  const { data } = this.supabase.storage
+    .from('avatars')
+    .getPublicUrl(`${userId}.${fileExt}`);
+    
+  return data.publicUrl;
+}
 
 }
 

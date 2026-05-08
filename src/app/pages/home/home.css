@@ -118,7 +118,7 @@
 
 .home-header {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
   width: 100%;
@@ -145,4 +145,20 @@
 .btn-logout:hover {
   background-color: #ff0000;
   color: white;
+}
+
+.btn-perfil {
+  background-color: #3b4cca;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  border: 3px solid #ffcc00;
+  transition: all 0.2s;
+}
+
+.btn-perfil:hover {
+  background-color: #ffcc00;
+  color: #333;
 }

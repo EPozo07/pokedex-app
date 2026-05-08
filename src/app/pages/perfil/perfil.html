@@ -1,0 +1,32 @@
+<div class="perfil-container">
+  <div class="perfil-header">
+    <a routerLink="/home" class="boton-volver">Volver</a>
+    <h1>Mi Perfil</h1>
+  </div>
+
+  @if (user) {
+    <div class="perfil-card">
+      
+      <div class="avatar-container">
+        @if (avatarUrl) {
+          <img [src]="avatarUrl" alt="avatar" class="avatar">
+        } @else {
+          <div class="avatar-placeholder"></div>
+        }
+      </div>
+
+      <p class="user-email">{{ user.email }}</p>
+
+      <label for="avatar-input" class="btn-subir">
+        {{ uploading ? 'Subiendo...' : 'Cambiar foto de perfil' }}
+      </label>
+      <input 
+        id="avatar-input"
+        type="file" 
+        accept="image/*"
+        (change)="onFileSelected($event)"
+        style="display: none">
+
+    </div>
+  }
+</div>

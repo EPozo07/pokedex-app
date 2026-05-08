@@ -7,6 +7,7 @@ import { Favoritos } from './pages/favoritos/favoritos';
 import { Login } from './pages/login/login';
 import { Registro } from './pages/registro/registro';
 import { authGuard } from './guards/auth-guard';
+import{Perfil} from './pages/perfil/perfil';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -17,4 +18,5 @@ export const routes: Routes = [
   { path: 'favoritos', component: Favoritos, canActivate: [authGuard] },
   { path: 'login', component: Login },
   { path: 'registro', component: Registro },
+  { path: 'perfil', component: Perfil, canActivate: [authGuard] },
 ];
