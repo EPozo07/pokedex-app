@@ -1,48 +1,72 @@
-<div class="titulo">
-    <div class="titulo-header">
-      <h1>Pokédex</h1>
-      <div class="filtros">
-        <label for="tipo-select">Filtrar por tipo</label>
-        <select id="tipo-select" [(ngModel)]="selectedType" (change)="filtrarPorTipo()">
-          @for (tipo of types; track tipo) {
-            <option [value]="tipo">{{ tipo === 'all' ? 'Todos' : tipo | titlecase }}</option>
-          }
-        </select>
-      </div>
-    </div>
-    
-    <a routerLink="/home" class="boton-volver">Volver</a>
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-button routerLink="/home" fill="clear" color="light">
+        Volver
+      </ion-button>
+    </ion-buttons>
+    <ion-title color="light">Pokédex</ion-title>
+    <ion-buttons slot="end">
+      <ion-select 
+        [(ngModel)]="selectedType" 
+        (ionChange)="filtrarPorTipo()"
+        interface="popover"
+        color="light"
+        placeholder="Filtrar tipo">
+        @for (tipo of types; track tipo) {
+          <ion-select-option [value]="tipo">{{ tipo === 'all' ? 'Todos' : tipo | titlecase }}</ion-select-option>
+        }
+      </ion-select>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar color="danger">
+    <ion-searchbar
+      [(ngModel)]="busqueda"
+      (keyup.enter)="buscarPokemon()"
+      placeholder="Busca un pokémon..."
+      color="light">
+    </ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="buscarPokemon()" fill="solid" color="warning">
+        Buscar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
-    <div class="buscador">
-      <input 
-        type="text" 
-        placeholder="Busca un pokémon..." 
-        [(ngModel)]="busqueda"
-        (keyup.enter)="buscarPokemon()">
-      <button (click)="buscarPokemon()">Buscar</button>
-    </div>
-
-    @if (pokemonEncontrado) {
-      <div class="resultado-busqueda">
-        <h2>{{ pokemonEncontrado.name | titlecase }}</h2>
+<ion-content>
+  @if (pokemonEncontrado) {
+    <ion-card class="resultado-busqueda">
+      <ion-card-header>
+        <ion-card-title>{{ pokemonEncontrado.name | titlecase }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
         <img [src]="pokemonEncontrado.sprites.front_default" [alt]="pokemonEncontrado.name">
         <p>Altura: {{ pokemonEncontrado.height }} m</p>
         <p>Peso: {{ pokemonEncontrado.weight }} kg</p>
-        <a [routerLink]="['/detalle', pokemonEncontrado.id]">Ver detalle completo</a>
-      </div>
-    }
+        <ion-button [routerLink]="['/detalle', pokemonEncontrado.id]" color="danger" expand="block">
+          Ver detalle completo
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  }
 
-    @if (errorNoEncontrado) {
+  @if (errorNoEncontrado) {
+    <ion-text color="light">
       <p class="error">{{ errorNoEncontrado }}</p>
-    }
-    
-    @if (loading){
-        <p>Cargando pokémons...</p>
-    }@else if (pokemons){
-        <div class="Pokemones">
-        @for (pokemon of pokemons; track pokemon.name){
-            <app-carta-pokemon [pokemon]="pokemon"></app-carta-pokemon>
-        }
-        </div>
-    }
-</div>
+    </ion-text>
+  }
+
+  @if (loading) {
+    <div class="loading">
+      <ion-spinner name="crescent" color="light"></ion-spinner>
+      <p>Cargando pokémons...</p>
+    </div>
+  } @else if (pokemons) {
+    <div class="Pokemones">
+      @for (pokemon of pokemons; track pokemon.name) {
+        <app-carta-pokemon [pokemon]="pokemon"></app-carta-pokemon>
+      }
+    </div>
+  }
+</ion-content>

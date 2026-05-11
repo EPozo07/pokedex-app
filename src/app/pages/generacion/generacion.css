@@ -1,112 +1,20 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+ion-content {
+  --background: linear-gradient(135deg, #ffcc00, #ff0000);
 }
 
-body {
-  background: linear-gradient(135deg, #ffcc00, #ff0000); /* Cambiar esto porque no se porque no se ve el fondo como quiero*/
-  font-family: 'Arial', sans-serif;
-  min-height: 100vh;
-}
-
-.titulo {
-  text-align: center;
-  padding: 30px 20px;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.titulo-header {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
+.Pokemones {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto 30px;
-  background: white;
-  padding: 20px 30px;
-  border-radius: 20px;
-  border-bottom: 6px solid #ffcc00;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  padding: 15px;
 }
-
-.titulo h1 {
-  color: #cc0000;
-  font-size: 3rem;
-  text-shadow: 3px 3px 0px #ffcc00;
-  letter-spacing: 5px;
-  font-weight: 900;
-}
-
-.filtros {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.filtros label {
-  color: #333;
-  font-weight: bold;
-  font-size: 0.95rem;
-}
-
-.filtros select {
-  padding: 10px 14px;
-  border-radius: 20px;
-  border: 3px solid #ffcc00;
-  font-size: 1rem;
-  background-color: white;
-  outline: none;
-  cursor: pointer;
-  font-weight: bold;
-  color: #333;
-}
-
-
-
-.buscador {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin: 20px 0 30px;
-}
-
-.buscador input {
-  padding: 12px 25px;
-  border-radius: 25px;
-  border: 3px solid #ffcc00;
-  font-size: 1rem;
-  outline: none;
-  width: 350px;
-  box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.buscador button {
-  padding: 12px 25px;
-  background-color: #ffcc00;
-  color: #333;
-  border: none;
-  border-radius: 25px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.2s;
-  box-shadow: 3px 3px 0px rgba(0,0,0,0.2);
-}
-
 
 .resultado-busqueda {
-  background: white;
-  border: 3px solid #ffcc00;
-  border-radius: 20px;
-  padding: 25px;
   max-width: 300px;
-  margin: 20px auto 30px;
+  margin: 20px auto;
   text-align: center;
-  box-shadow: 5px 5px 0px #cc0000;
+  border: 3px solid #ffcc00 !important;
+  box-shadow: 5px 5px 0px #cc0000 !important;
 }
 
 .resultado-busqueda img {
@@ -115,72 +23,23 @@ body {
   filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2));
 }
 
-.resultado-busqueda h2 {
-  text-transform: capitalize;
-  color: #333;
-  font-size: 1.5rem;
-  margin: 10px 0;
-}
-
-.resultado-busqueda p {
-  color: #666;
-  margin: 5px 0;
-}
-
-.resultado-busqueda a {
-  display: inline-block;
-  margin-top: 15px;
-  background-color: #ff0000;
-  color: white;
-  padding: 8px 20px;
-  border-radius: 20px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: all 0.2s;
-  border: 2px solid #cc0000;
-}
-
-.resultado-busqueda a:hover {
-  background-color: #ffcc00;
-  color: #333;
-  border-color: #ffcc00;
-}
-
-.Pokemones {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
-  padding: 10px;
-}
-
 .error {
   color: white;
   font-size: 1.2rem;
   font-weight: bold;
-  margin: 20px 0;
+  margin: 20px;
   background: rgba(0,0,0,0.3);
   padding: 15px 30px;
   border-radius: 15px;
-  display: inline-block;
-}
-.boton-volver {
-  display: inline-block;
-  margin: 20px auto;
-  background-color: #ff0000;
-  color: white;
-  padding: 8px 20px;
-  border-radius: 20px;
-  text-decoration: none;
-  font-weight: bold;
-  border: 2px solid #cc0000;
   text-align: center;
-  display: block;
-  width: fit-content;
-  margin: 20px auto;
 }
 
-.boton-volver:hover {
-  background-color: #ffcc00;
-  color: #333;
-  border-color: #ffcc00;
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  color: white;
+  font-weight: bold;
 }

@@ -1,23 +1,45 @@
-<div class="favoritos-container">
-  <div class="favoritos-header">
-    <h1>Mis Favoritos</h1>
-    <a routerLink="/home" class="boton-volver">Volver</a>
-  </div>
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-button routerLink="/home" fill="clear" color="light">
+        ← Volver
+      </ion-button>
+    </ion-buttons>
+    <ion-title color="light"> Mis Favoritos</ion-title>
+  </ion-toolbar>
+</ion-header>
 
+<ion-content>
   @if (loading) {
-    <p>Cargando favoritos...</p>
+    <div class="loading">
+      <ion-spinner name="crescent" color="light"></ion-spinner>
+      <p>Cargando favoritos...</p>
+    </div>
   } @else if (favoritos.length === 0) {
-    <p class="sin-favoritos">No tienes ningún favorito todavía</p>
+    <div class="sin-favoritos">
+      <p>No tienes ningún favorito todavía </p>
+      <ion-button routerLink="/home" color="warning">
+        ¡Añade pokémon!
+      </ion-button>
+    </div>
   } @else {
     <div class="favoritos-grid">
       @for (favorito of favoritos; track favorito.id) {
-        <div class="favorito-card">
+        <ion-card class="favorito-card">
           <img [src]="favorito.pokemon_imagen" [alt]="favorito.pokemon_nombre">
-          <h3>{{ favorito.pokemon_nombre | titlecase }}</h3>
-          <a [routerLink]="['/detalle', favorito.pokemon_id]" class="btn-detalle">Ver detalle</a>
-          <button (click)="eliminarFavorito(favorito.id)" class="btn-eliminar">Eliminar</button>
-        </div>
+          <ion-card-header>
+            <ion-card-title>{{ favorito.pokemon_nombre | titlecase }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-button [routerLink]="['/detalle', favorito.pokemon_id]" color="danger" expand="block">
+              Ver detalle
+            </ion-button>
+            <ion-button (click)="eliminarFavorito(favorito.id)" color="medium" expand="block" fill="outline">
+               Eliminar
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
       }
     </div>
   }
-</div>
+</ion-content>

@@ -4,10 +4,11 @@ import { Pokemon } from '../../services/pokemon';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { PokemonInterface } from '../../models/pokemon/pokemon';
+import { IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonList, IonItem, IonLabel, IonSpinner, IonBadge } from '@ionic/angular/standalone';
 @Component({
   standalone: true,
   selector: 'app-detalle',
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonList, IonItem, IonLabel, IonSpinner, IonBadge],
   templateUrl: './detalle.html',
   styleUrls: ['./detalle.css'],
 })
@@ -84,10 +85,39 @@ typeShadows: { [key: string]: string } = {
   steel: '0 0 25px #B7B7CEAA',
   fairy: '0 0 25px #D685ADAA, 0 0 50px #D685AD55'
 };
+
+getTypeBackground(): string {
+  if (!this.pokemon?.types?.length) return '#cc0000';
+  const type = this.pokemon.types[0].type.name;
+  const backgrounds: { [key: string]: string } = {
+    normal: 'linear-gradient(135deg, #A8A77A, #C8C7A0)',
+    fire: 'linear-gradient(135deg, #cc3300, #ff6600)',
+    water: 'linear-gradient(135deg, #1a66cc, #4d99ff)',
+    electric: 'linear-gradient(135deg, #cc9900, #ffcc00)',
+    grass: 'linear-gradient(135deg, #336600, #66cc00)',
+    ice: 'linear-gradient(135deg, #66cccc, #99ffff)',
+    fighting: 'linear-gradient(135deg, #990000, #cc2200)',
+    poison: 'linear-gradient(135deg, #660066, #990099)',
+    ground: 'linear-gradient(135deg, #996600, #cc9900)',
+    flying: 'linear-gradient(135deg, #6633cc, #9966ff)',
+    psychic: 'linear-gradient(135deg, #cc0066, #ff3399)',
+    bug: 'linear-gradient(135deg, #669900, #99cc00)',
+    rock: 'linear-gradient(135deg, #666633, #999966)',
+    ghost: 'linear-gradient(135deg, #330066, #663399)',
+    dragon: 'linear-gradient(135deg, #330099, #6600ff)',
+    dark: 'linear-gradient(135deg, #333300, #666633)',
+    steel: 'linear-gradient(135deg, #666699, #9999cc)',
+    fairy: 'linear-gradient(135deg, #cc6699, #ff99cc)',
+  };
+  return backgrounds[type] || 'linear-gradient(135deg, #cc0000, #ff6666)';
+}
 getTypeShadow(): string {
   if (!this.pokemon?.types?.length) return '0 0 25px #ffd70066';
 
   const type = this.pokemon.types[0].type.name;
   return this.typeShadows[type] || '0 0 25px #ffd70066';
+}
+volver(){
+  window.history.back();
 }
 }

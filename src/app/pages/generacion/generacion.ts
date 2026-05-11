@@ -6,11 +6,12 @@ import { FormsModule } from '@angular/forms';
 import { CartaPokemon } from '../../components/carta-pokemon/carta-pokemon';
 import { PokemonInterface } from '../../models/pokemon/pokemon';
 import { ActivatedRoute } from '@angular/router';
+import { IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonSelect, IonSelectOption, IonSearchbar, IonSpinner, IonText } from '@ionic/angular/standalone';
 
 @Component({
   standalone: true,
   selector: 'app-generacion',
-  imports: [CommonModule, RouterLink, FormsModule, CartaPokemon],
+  imports: [CommonModule, RouterLink, FormsModule, CartaPokemon, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonSelect, IonSelectOption, IonSearchbar, IonSpinner, IonText],
   templateUrl: './generacion.html',
   styleUrls: ['./generacion.css'],
 })

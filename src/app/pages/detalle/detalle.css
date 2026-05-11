@@ -1,38 +1,13 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background-color: #16161d;
-  font-family: 'Arial', sans-serif;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 .detalle {
-  border: 8px solid #000000;
-  border-radius: 20px;
-  padding: 30px;
   max-width: 400px;
-  margin: 40px auto;
-  box-shadow: 0 0 30px rgba(0, 99, 13, 0.5), inset 0 0 20px rgba(255,255,255,0.2);
+  margin: 20px auto;
   text-align: center;
+  border: 8px solid #000000 !important;
+  border-radius: 20px !important;
 }
 
-.detalle h2 {
-  font-size: 2rem;
-  color: #1a1a2e;
-  text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
-  margin-bottom: 10px;
-  font-weight: bold;
-  letter-spacing: 2px;
-}
-
-.detalle img {
+.pokemon-img {
   width: 180px;
   height: 180px;
   background: radial-gradient(circle, #ffffff 40%, #ffe066 100%);
@@ -42,14 +17,7 @@ body {
   display: block;
 }
 
-.detalle p {
-  color: #1a1a2e;
-  font-size: 0.95rem;
-  margin: 5px 0;
-  font-weight: bold;
-}
-
-.detalle h3 {
+h3 {
   margin-top: 15px;
   margin-bottom: 8px;
   color: #1a1a2e;
@@ -58,39 +26,43 @@ body {
   padding-bottom: 4px;
 }
 
-.detalle ul {
-  list-style: none;
-  padding: 0;
+.tipos {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px 0;
 }
 
-.detalle ul li {
-  background-color: rgba(255,255,255,0.3);
-  margin: 4px 0;
-  padding: 4px 10px;
-  border-radius: 10px;
-  color: #1a1a2e;
-  font-weight: bold;
-  font-size: 0.9rem;
-}
-
-.boton-volver {
-  display: inline-block;
-  margin: 20px auto;
-  background-color: #ff0000;
-  color: white;
-  padding: 8px 20px;
+ion-badge {
+  padding: 8px 15px;
   border-radius: 20px;
-  text-decoration: none;
+  font-size: 0.9rem;
   font-weight: bold;
-  border: 2px solid #cc0000;
-  text-align: center;
-  display: block;
-  width: fit-content;
-  margin: 20px auto;
 }
 
-.boton-volver:hover {
-  background-color: #ffcc00;
-  color: #333;
-  border-color: #ffcc00;
+ion-list {
+  background: transparent !important;
+}
+
+ion-item {
+  --background: rgba(255,255,255,0.3);
+  border-radius: 10px;
+  margin: 4px 0;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  color: white;
+  font-weight: bold;
+}
+
+.error {
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 1.2rem;
 }

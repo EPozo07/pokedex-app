@@ -1,29 +1,18 @@
-body {
-  background-color: #16161d;
-  font-family: 'Arial', sans-serif;
+ion-content {
+  --background: #16161d;
 }
 
-/* Carta estilo Pokédex */
 .pokedex-card {
-  background: linear-gradient(145deg, red, gray);
-  border: 8px solid #8b0000;
-  border-radius: 20px;
-  padding: 25px;
+  background: linear-gradient(145deg, red, gray) !important;
+  border: 8px solid #8b0000 !important;
+  border-radius: 20px !important;
   max-width: 400px;
   margin: 40px auto;
-  box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.5) !important;
   text-align: center;
   color: white;
 }
 
-/* Nombre */
-.name {
-  font-size: 2rem;
-  margin-bottom: 10px;
-  letter-spacing: 2px;
-}
-
-/* Imagen */
 .image-container {
   background: radial-gradient(circle, #ffffff 40%, #ffcccc 100%);
   border-radius: 50%;
@@ -38,55 +27,52 @@ body {
   width: 100%;
   height: 100%;
   border-radius: 50%;
+  object-fit: cover;
 }
 
-/* Info */
-.info p {
-  margin: 5px 0;
-  font-weight: bold;
+ion-card-title {
+  color: white !important;
+  font-size: 1.8rem;
+  letter-spacing: 2px;
 }
 
-/* Secciones */
-.description, .abilities {
-  margin-top: 15px;
+ion-card-subtitle {
+  color: rgba(255,255,255,0.8) !important;
 }
 
-.description h3,
-.abilities h3 {
-  border-bottom: 2px solid white;
-  margin-bottom: 5px;
+ion-list {
+  background: transparent !important;
 }
 
-/* Lista */
-.abilities ul {
-  list-style: none;
-  padding: 0;
-}
-
-.abilities li {
-  background: rgba(255,255,255,0.2);
-  margin: 4px 0;
-  padding: 5px;
+ion-item {
+  --background: rgba(255,255,255,0.2);
+  --color: white;
   border-radius: 10px;
-}
-.boton-volver {
-  display: inline-block;
-  margin: 20px auto;
-  background-color: #ff0000;
-  color: white;
-  padding: 8px 20px;
-  border-radius: 20px;
-  text-decoration: none;
-  font-weight: bold;
-  border: 2px solid #cc0000;
-  text-align: center;
-  display: block;
-  width: fit-content;
-  margin: 20px auto;
+  margin: 4px 0;
 }
 
-.boton-volver:hover {
-  background-color: #ffcc00;
-  color: #333;
-  border-color: #ffcc00;
+h3 {
+  color: white;
+  border-bottom: 2px solid white;
+  padding-bottom: 5px;
+  margin: 15px 0 10px;
+}
+
+p {
+  color: rgba(255,255,255,0.9);
+  margin: 10px 0;
+}
+
+.habilidades {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+ion-badge {
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 0.9rem;
 }
