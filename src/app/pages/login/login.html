@@ -1,37 +1,58 @@
-<div class="login-container">
-  <div class="login-card">
-    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" alt="pikachu" class="login-img">
-    <h1>Pokédex</h1>
-    <p class="subtitulo">Inicia sesión para continuar</p>
+<ion-content>
+  <div class="login-container">
+    <ion-card class="login-card">
+      
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" alt="pikachu" class="login-img">
+      
+      <ion-card-header>
+        <ion-card-title>Pokédex</ion-card-title>
+        <ion-card-subtitle>Inicia sesión para continuar</ion-card-subtitle>
+      </ion-card-header>
 
-    <div class="form-group">
-      <input 
-        type="email" 
-        placeholder="Email" 
-        [(ngModel)]="email"
-        class="input-field">
-    </div>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-input
+              type="email"
+              placeholder="Email"
+              [(ngModel)]="email"
+              label="Email"
+              labelPlacement="floating">
+            </ion-input>
+          </ion-item>
 
-    <div class="form-group">
-      <input 
-        type="password" 
-        placeholder="Contraseña" 
-        [(ngModel)]="password"
-        (keyup.enter)="login()"
-        class="input-field">
-    </div>
+          <ion-item>
+            <ion-input
+              type="password"
+              placeholder="Contraseña"
+              [(ngModel)]="password"
+              (keyup.enter)="login()"
+              label="Contraseña"
+              labelPlacement="floating">
+            </ion-input>
+          </ion-item>
+        </ion-list>
 
-    @if (error) {
-      <p class="error">{{ error }}</p>
-    }
+        @if (error) {
+          <ion-text color="danger">
+            <p class="error">{{ error }}</p>
+          </ion-text>
+        }
 
-    <button (click)="login()" [disabled]="loading" class="btn-login">
-      {{ loading ? 'Cargando...' : 'Iniciar sesión' }}
-    </button>
+        <ion-button 
+          expand="block" 
+          color="danger"
+          (click)="login()" 
+          [disabled]="loading"
+          class="btn-login">
+          {{ loading ? 'Cargando...' : 'Iniciar sesión' }}
+        </ion-button>
 
-    <p class="registro-link">
-      ¿No tienes cuenta? 
-      <a routerLink="/registro">Regístrate</a>
-    </p>
+        <p class="registro-link">
+          ¿No tienes cuenta? 
+          <a routerLink="/registro">Regístrate</a>
+        </p>
+      </ion-card-content>
+    </ion-card>
   </div>
-</div>
+</ion-content>

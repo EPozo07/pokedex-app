@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { SupabaseService } from '../../services/supabase';
 import { AuthService } from '../../services/auth';
+import { IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonCard, IonCardContent } from '@ionic/angular/standalone';
 
 @Component({
   standalone: true,
   selector: 'app-perfil',
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonCard, IonCardContent],
   templateUrl: './perfil.html',
   styleUrls: ['./perfil.css']
 })
