@@ -1,48 +1,51 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControl } from '@angular/forms';
 import { AuthService } from '../../services/auth';
 import { IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonList, IonItem, IonInput, IonButton, IonText } from '@ionic/angular/standalone';
+
 @Component({
   standalone: true,
-  selector: 'app-register',
-  imports: [CommonModule, FormsModule, RouterLink, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonList, IonItem, IonInput, IonButton, IonText],
+  selector: 'app-registro',
+  imports: [CommonModule, RouterLink, ReactiveFormsModule, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonList, IonItem, IonInput, IonButton, IonText],
   templateUrl: './registro.html',
   styleUrls: ['./registro.css']
 })
 export class Registro {
-  email: string = '';
-  password: string = '';
-  confirmPassword: string = '';
+  registroForm: FormGroup;
   error: string = '';
   loading: boolean = false;
 
   constructor(
+    private fb: FormBuilder,
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) {
+    this.registroForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', [Validators.required]]
+    }, { validators: this.passwordsMatch });
+  }
+
+  passwordsMatch(control: AbstractControl) {
+    const password = control.get('password')?.value;
+    const confirmPassword = control.get('confirmPassword')?.value;
+    return password === confirmPassword ? null : { noMatch: true };
+  }
 
   async register() {
-    if (!this.email || !this.password || !this.confirmPassword) {
-      this.error = 'Por favor rellena todos los campos';
-      return;
-    }
-
-    if (this.password !== this.confirmPassword) {
-      this.error = 'Las contraseñas no coinciden';
-      return;
-    }
-
-    if (this.password.length < 6) {
-      this.error = 'La contraseña debe tener mínimo 6 caracteres';
+    if (this.registroForm.invalid) {
+      this.registroForm.markAllAsTouched();
       return;
     }
 
     this.loading = true;
     this.error = '';
 
-    const { data, error } = await this.authService.signUp(this.email, this.password);
+    const { email, password } = this.registroForm.value;
+    const { data, error } = await this.authService.signUp(email, password);
 
     if (error) {
       this.error = 'Error al registrarse. Prueba con otro email';
@@ -51,4 +54,8 @@ export class Registro {
       this.router.navigate(['/home']);
     }
   }
+
+  get emailControl() { return this.registroForm.get('email'); }
+  get passwordControl() { return this.registroForm.get('password'); }
+  get confirmPasswordControl() { return this.registroForm.get('confirmPassword'); }
 }
