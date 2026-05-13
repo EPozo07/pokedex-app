@@ -2,13 +2,12 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Pokemon } from '../../services/pokemon';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { PokemonInterface } from '../../models/pokemon/pokemon';
 import { IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonList, IonItem, IonLabel, IonSpinner, IonBadge } from '@ionic/angular/standalone';
 @Component({
   standalone: true,
   selector: 'app-detalle',
-  imports: [CommonModule, RouterLink, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonList, IonItem, IonLabel, IonSpinner, IonBadge],
+  imports: [CommonModule, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonList, IonItem, IonLabel, IonSpinner, IonBadge],
   templateUrl: './detalle.html',
   styleUrls: ['./detalle.css'],
 })

@@ -6,18 +6,22 @@ import { FormsModule } from '@angular/forms';
 import { CartaPokemon } from '../../components/carta-pokemon/carta-pokemon';
 import { PokemonInterface } from '../../models/pokemon/pokemon';
 import { ActivatedRoute } from '@angular/router';
-import { IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonSelect, IonSelectOption, IonSearchbar, IonSpinner, IonText } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonSelect, IonSelectOption, IonSearchbar, IonSpinner, IonText, IonInfiniteScroll, IonInfiniteScrollContent } from '@ionic/angular/standalone';
 
 @Component({
   standalone: true,
   selector: 'app-generacion',
-  imports: [CommonModule, RouterLink, FormsModule, CartaPokemon, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonSelect, IonSelectOption, IonSearchbar, IonSpinner, IonText],
+  imports: [CommonModule, RouterLink, FormsModule, CartaPokemon, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonSelect, IonSelectOption, IonSearchbar, IonSpinner, IonText, IonInfiniteScroll, IonInfiniteScrollContent],
   templateUrl: './generacion.html',
   styleUrls: ['./generacion.css'],
 })
 export class Generacion implements OnInit {
   allPokemons: any[] = [];
   pokemons: any[] = [];
+  displayedPokemons: any[] = [];
+  pageSize: number = 20;
+  currentPage: number = 0;
+  allLoaded: boolean = false;
   loading: boolean = true;
   busqueda: string = '';
   selectedType: string = 'all';
@@ -41,6 +45,7 @@ export class Generacion implements OnInit {
     this.pokemonService.getPokemonsByGeneration(this.genId).subscribe((data: any) => {
       this.allPokemons = data.pokemon_species;
       this.pokemons = this.allPokemons;
+      this.loadMore();
       this.loading = false;
       this.cdr.detectChanges();
     }, (error) => {
@@ -50,20 +55,42 @@ export class Generacion implements OnInit {
     });
   }
 
+  loadMore(event?: any) {
+    const start = this.currentPage * this.pageSize;
+    const end = start + this.pageSize;
+    const newPokemons = this.pokemons.slice(start, end);
+    this.displayedPokemons = [...this.displayedPokemons, ...newPokemons];
+    this.currentPage++;
+
+    if (end >= this.pokemons.length) {
+      this.allLoaded = true;
+    }
+
+    if (event) {
+      event.target.complete();
+    }
+
+    this.cdr.detectChanges();
+  }
+
   filtrarPorTipo(): void {
     if (this.selectedType === 'all') {
       this.pokemons = this.allPokemons;
-      return;
+    } else {
+      this.pokemonService.getPokemonsByType(this.selectedType).subscribe((data: any) => {
+        const pokeNames = new Set(data.pokemon.map((item: any) => item.pokemon.name));
+        this.pokemons = this.allPokemons.filter((pokemon: any) => pokeNames.has(pokemon.name));
+        this.cdr.detectChanges();
+      }, (error) => {
+        console.error('Error al filtrar por tipo:', error);
+        this.pokemons = this.allPokemons;
+        this.cdr.detectChanges();
+      });
     }
-    this.pokemonService.getPokemonsByType(this.selectedType).subscribe((data: any) => {
-      const pokeNames = new Set(data.pokemon.map((item: any) => item.pokemon.name));
-      this.pokemons = this.allPokemons.filter((pokemon: any) => pokeNames.has(pokemon.name));
-      this.cdr.detectChanges();
-    }, (error) => {
-      console.error('Error al filtrar por tipo:', error);
-      this.pokemons = this.allPokemons;
-      this.cdr.detectChanges();
-    });
+    this.displayedPokemons = [];
+    this.currentPage = 0;
+    this.allLoaded = false;
+    this.loadMore();
   }
 
   buscarPokemon(): void {

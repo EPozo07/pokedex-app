@@ -1,18 +1,47 @@
 import { Component, Input } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { SupabaseService } from '../../services/supabase';
+import { IonButton, IonToast, IonActionSheet } from '@ionic/angular/standalone';
+import { CommonModule } from '@angular/common';
 
 @Component({
   standalone: true,
   selector: 'app-carta-pokemon',
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule, IonButton, IonToast, IonActionSheet],
   templateUrl: './carta-pokemon.html',
   styleUrls: ['./carta-pokemon.css']
 })
 export class CartaPokemon {
   @Input() pokemon: any;
+  showToast: boolean = false;
+  toastMessage: string = '';
+  toastColor: string = 'success';
+  showActionSheet: boolean = false;
 
-  constructor(private supabaseService: SupabaseService) {}
+  actionSheetButtons = [
+    {
+      text: ' Añadir a favoritos',
+      handler: () => this.addFavorito()
+    },
+    {
+      text: 'Ver detalle',
+      handler: () => this.verDetalle()
+    },
+    {
+      text: 'Cancelar',
+      role: 'cancel'
+    }
+  ];
+
+  constructor(
+    private supabaseService: SupabaseService,
+    private router: Router
+  ) {}
+
+  verDetalle() {
+    const id = this.pokemon.url.split('/')[6];
+    this.router.navigate(['/detalle', id]);
+  }
 
   async addFavorito() {
     const id = this.pokemon.url.split('/')[6];
@@ -25,9 +54,12 @@ export class CartaPokemon {
     );
 
     if (error) {
-      console.error('Error al añadir favorito:', error);
+      this.toastMessage = 'Error al añadir favorito';
+      this.toastColor = 'danger';
     } else {
-      console.log('Añadido a favoritos!');
+      this.toastMessage = '¡Añadido a favoritos!';
+      this.toastColor = 'success';
     }
+    this.showToast = true;
   }
 }

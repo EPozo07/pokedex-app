@@ -2,7 +2,7 @@
   <ion-toolbar color="danger">
     <ion-buttons slot="start">
       <ion-button routerLink="/home" fill="clear" color="light">
-        ← Volver
+         Volver
       </ion-button>
     </ion-buttons>
     <ion-title color="light"> Mis Favoritos</ion-title>
@@ -25,21 +25,65 @@
   } @else {
     <div class="favoritos-grid">
       @for (favorito of favoritos; track favorito.id) {
-        <ion-card class="favorito-card">
+        <ion-card class="favorito-card" (click)="abrirModal(favorito)">
           <img [src]="favorito.pokemon_imagen" [alt]="favorito.pokemon_nombre">
           <ion-card-header>
             <ion-card-title>{{ favorito.pokemon_nombre | titlecase }}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <ion-button [routerLink]="['/detalle', favorito.pokemon_id]" color="danger" expand="block">
+            <ion-button [routerLink]="['/detalle', favorito.pokemon_id]" color="danger" expand="block" (click)="$event.stopPropagation()">
               Ver detalle
             </ion-button>
-            <ion-button (click)="eliminarFavorito(favorito.id)" color="medium" expand="block" fill="outline">
-               Eliminar
+            <ion-button (click)="mostrarAlert(favorito.id); $event.stopPropagation()" color="medium" expand="block" fill="outline">
+              Eliminar
             </ion-button>
           </ion-card-content>
         </ion-card>
       }
     </div>
   }
+
+  <ion-modal [isOpen]="showModal" (didDismiss)="showModal = false">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar color="danger">
+          <ion-title color="light">{{ selectedPokemon?.pokemon_nombre | titlecase }}</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="showModal = false" fill="clear" color="light">✕</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        @if (selectedPokemon) {
+          <div class="modal-content">
+            <img [src]="selectedPokemon.pokemon_imagen" [alt]="selectedPokemon.pokemon_nombre">
+            <h2>{{ selectedPokemon.pokemon_nombre | titlecase }}</h2>
+            <ion-button [routerLink]="['/detalle', selectedPokemon.pokemon_id]" color="danger" expand="block" (click)="showModal = false">
+              Ver detalle completo
+            </ion-button>
+            <ion-button (click)="mostrarAlert(selectedPokemon.id); showModal = false" color="medium" expand="block" fill="outline">
+              🗑️ Eliminar
+            </ion-button>
+          </div>
+        }
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <ion-alert
+    [isOpen]="showAlert"
+    header="Eliminar favorito"
+    message="¿Estás seguro de que quieres eliminar este pokémon de favoritos?"
+    [buttons]="alertButtons"
+    (didDismiss)="showAlert = false">
+  </ion-alert>
+
+  <ion-toast
+    [isOpen]="showToast"
+    [message]="toastMessage"
+    color="success"
+    duration="2000"
+    position="bottom"
+    (didDismiss)="showToast = false">
+  </ion-toast>
 </ion-content>

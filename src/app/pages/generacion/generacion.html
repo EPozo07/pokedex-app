@@ -64,9 +64,13 @@
     </div>
   } @else if (pokemons) {
     <div class="Pokemones">
-      @for (pokemon of pokemons; track pokemon.name) {
+      @for (pokemon of displayedPokemons; track pokemon.name) {
         <app-carta-pokemon [pokemon]="pokemon"></app-carta-pokemon>
       }
-    </div>
-  }
-</ion-content>
+   <ion-infinite-scroll [disabled]="allLoaded" (ionInfinite)="loadMore($event)">
+      <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Cargando más pokémon...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+      </div>
+    }
+  </ion-content>  
