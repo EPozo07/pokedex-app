@@ -12,6 +12,18 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-button routerLink="/favoritos" fill="clear" color="light">
+         Favoritos
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/about" fill="clear" color="light">
+        Sobre mí
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
@@ -30,10 +42,5 @@
         </ion-card-content>
       </ion-card>
     }
-  </div>
-
-  <div class="botones-nav">
-    <ion-button routerLink="/favoritos" color="primary"> Favoritos</ion-button>
-    <ion-button routerLink="/about" color="primary">Sobre mí</ion-button>
   </div>
 </ion-content>

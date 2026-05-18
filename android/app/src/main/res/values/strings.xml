@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">pokedexApp</string>
+    <string name="title_activity_main">pokedexApp</string>
+    <string name="package_name">com.eloy.pokedexapp</string>
+    <string name="custom_url_scheme">com.eloy.pokedexapp</string>
+</resources>

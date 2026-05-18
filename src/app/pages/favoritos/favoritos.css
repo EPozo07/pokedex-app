@@ -49,3 +49,11 @@ ion-content {
   color: white;
   font-weight: bold;
 }
+
+@media (max-width: 480px) {
+  .favoritos-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 10px;
+  }
+}
