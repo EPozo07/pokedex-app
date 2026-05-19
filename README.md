@@ -9,6 +9,11 @@ Aplicación web desarrollada durante mis prácticas de FP en Desarrollo de Aplic
 
 ---
 
+
+## URL de producción
+
+https://pokedex-app-rzdp.vercel.app
+
 ## 🚀 Stack tecnológico
 
 - **Angular 17+** → Framework principal
