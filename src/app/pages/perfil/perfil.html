@@ -24,12 +24,11 @@
 
         <p class="user-email">{{ user.email }}</p>
 
-        <label for="avatar-input">
-          <ion-button expand="block" color="danger" [disabled]="uploading">
-            {{ uploading ? 'Subiendo...' : ' Cambiar foto de perfil' }}
-          </ion-button>
-        </label>
+        <ion-button expand="block" color="danger" [disabled]="uploading" (click)="triggerAvatarInput()">
+          {{ uploading ? 'Subiendo...' : ' Cambiar foto de perfil' }}
+        </ion-button>
         <input 
+          #avatarInput
           id="avatar-input"
           type="file" 
           accept="image/*"

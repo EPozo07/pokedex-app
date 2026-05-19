@@ -31,8 +31,13 @@ export class Perfil implements OnInit {
     this.cdr.detectChanges();
   }
 
+  triggerAvatarInput() {
+    const input = document.getElementById('avatar-input') as HTMLInputElement | null;
+    input?.click();
+  }
+
   async onFileSelected(event: any) {
-    const file = event.target.files[0];
+    const file = event.target.files?.[0];
     if (!file) return;
 
     this.uploading = true;

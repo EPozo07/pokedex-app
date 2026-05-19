@@ -1,6 +1,11 @@
 ion-content {
   --background: linear-gradient(135deg, #ffcc00, #ff0000);
   --padding-bottom: 20px;
+  min-height: 100%;
+}
+
+ion-content::part(native) {
+  -webkit-overflow-scrolling: touch;
 }
 
 .subtitulo {
@@ -16,8 +21,8 @@ ion-content {
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 15px;
-  padding: 15px 0 30px;
+  gap: 12px;
+  padding: 15px 0 60px;
 }
 
 .gen-card {
@@ -27,6 +32,8 @@ ion-content {
   cursor: pointer;
   transition: all 0.2s;
   text-align: center;
+  background: white;
+  min-width: 0;
 }
 
 .gen-card:hover {
@@ -45,6 +52,10 @@ ion-content {
 
 .gen-card:hover img {
   transform: scale(1.1);
+}
+
+ion-card-header {
+  padding-bottom: 5px;
 }
 
 ion-card-title {
@@ -68,4 +79,61 @@ ion-card-content {
   justify-content: center;
   gap: 15px;
   padding: 20px;
+}
+
+/* ---------- RESPONSIVE MOVIL ---------- */
+
+@media (max-width: 768px) {
+  .generaciones-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    gap: 10px;
+  }
+
+  .gen-card {
+    border-radius: 20px !important;
+  }
+
+  .gen-card img {
+    max-width: 100px;
+  }
+
+  ion-card-title {
+    font-size: 0.8rem !important;
+  }
+
+  ion-card-subtitle,
+  ion-card-content {
+    font-size: 0.75rem !important;
+  }
+
+  .subtitulo {
+    font-size: 1rem;
+    padding-top: 15px;
+  }
+
+  .botones-nav {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .generaciones-grid {
+    gap: 12px;
+  }
+
+  .gen-card img {
+    max-width: 85px;
+  }
+
+  ion-card-title {
+    font-size: 0.72rem !important;
+  }
+
+  ion-card-subtitle,
+  ion-card-content {
+    font-size: 0.7rem !important;
+  }
 }
